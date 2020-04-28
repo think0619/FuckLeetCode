@@ -54,7 +54,6 @@ namespace FuckingLeetCode
             {
                 foreach (char c in words[index])
                 {
-
                     //按位赋值
                     charactersArray[index] |= (1 << (c - 'a'));
                 } 
