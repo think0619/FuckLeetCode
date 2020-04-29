@@ -43,13 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NO001_AddTwoNumbers.cs" />
-    <Compile Include="NO018_4Sum.cs" />
-    <Compile Include="NO015_3Sum.cs" />
-    <Compile Include="NO019_Remove_Nth_Node_From_End_of_List.cs" />
-    <Compile Include="NO067_AddBinary.cs" />
-    <Compile Include="NO304_RangeSumQuery2D.cs" />
-    <Compile Include="NO447_NumberOfBoomerangs.cs" />
+    <Compile Include="100\10\NO001_AddTwoNumbers.cs" />
+    <Compile Include="100\10\NO002_Add_Two_Numbers.cs" />
+    <Compile Include="100\10\NO003_Longest_Substring_Without_Repeating_Characters.cs" />
+    <Compile Include="100\20\NO018_4Sum.cs" />
+    <Compile Include="100\20\NO015_3Sum.cs" />
+    <Compile Include="100\20\NO019_Remove_Nth_Node_From_End_of_List.cs" />
+    <Compile Include="100\70\NO067_AddBinary.cs" />
+    <Compile Include="400\310\NO304_RangeSumQuery2D.cs" />
+    <Compile Include="400\320\NO318_Maximum_Product_of_Word_Lengths.cs" />
+    <Compile Include="500\450\NO447_NumberOfBoomerangs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,7 +60,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NO304_RangeSumQuery2D.js" />
+    <Content Include="400\310\NO304_RangeSumQuery2D.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
