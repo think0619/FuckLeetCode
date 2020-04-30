@@ -13,64 +13,53 @@ namespace FuckingLeetCode
         public int LengthOfLongestSubstring(string s)
         {
             int maxLength = 0;
-            if (s.Length == 0 || s.Length == 1)
+            if (s.Length == 1 || s.Length == 0)
             {
                 maxLength = s.Length;
             }
             else
-            { 
-                Dictionary<char, int> charLastIndex = new Dictionary<char, int>();
-                int firstRepeatIndex = -1;
-                int lastRepeatIndex = -1;
-               // char[] sarray = new char[s.Length];
+            {
+                //滑动窗口
                 int index = 0;
+                int LeftIndex = 0;
+                Dictionary<char, int> LastCharacterIndex = new Dictionary<char, int>();
                 foreach (char item in s)
                 {
-                   // sarray[index] = item;
-                    if (charLastIndex.ContainsKey(item))
+                    if (LastCharacterIndex.ContainsKey(item))
                     {
-                        if (firstRepeatIndex == -1)
+                        var lenghtA = index - LeftIndex;
+                        if (lenghtA > maxLength)
                         {
-                            firstRepeatIndex = index;
+                            maxLength = lenghtA;
                         }
-                        lastRepeatIndex = charLastIndex[item];
-                        //找中间
-                        int lengthTmp = index - charLastIndex[item];
-                        if (maxLength < lengthTmp)
+
+                        int nextIndex = LastCharacterIndex[item] + 1;
+                        if (nextIndex >= LeftIndex)
+                        {
+                            while ((nextIndex <= index) && (LastCharacterIndex.ContainsKey(s[nextIndex]) && LastCharacterIndex[s[nextIndex]] != nextIndex))
+                            {
+                                nextIndex++;
+                            }
+                            if (nextIndex > index) { nextIndex = index; }
+                            LeftIndex = nextIndex;
+                        }
+                        LastCharacterIndex[item] = index;
+                    }
+                    else
+                    {
+                        var lengthTmp = index - LeftIndex + 1;
+                        if (lengthTmp > maxLength)
                         {
                             maxLength = lengthTmp;
                         }
-
-                        //  charLastIndex[item] = index;
-                        charLastIndex.Clear();
-
+                        LastCharacterIndex.Add(item, index);
                     }
-                    charLastIndex.Add(item, index);
-                    //else
-                    //{
-                    //    charLastIndex.Add(item, index);
-                    //}
                     index++;
                 }
-                if (firstRepeatIndex != -1)
-                {
-                    if (firstRepeatIndex  > maxLength)
-                    {
-                        maxLength = firstRepeatIndex ;
-                    }
-                }
 
-                if (lastRepeatIndex != -1)
+                if ((s.Length - LeftIndex) > maxLength)
                 {
-                    if ((s.Length-lastRepeatIndex-1) > maxLength)
-                    {
-                        maxLength = s.Length - lastRepeatIndex - 1;
-                    }
-                }
-
-                if (firstRepeatIndex == -1 && lastRepeatIndex == -1)
-                {
-                    maxLength = s.Length;
+                    maxLength = s.Length - LeftIndex;
                 }
             }
             return maxLength;
